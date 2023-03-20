@@ -1,5 +1,8 @@
 import {PerformanceComponent} from "./PerformanceComponent.js";
 
+import {BackButtonComponent} from "../../components/button/BackButtonComponent.js";
+import {MainPage} from "../../pages/main/MainPage.js";
+
 export class PerformancePage {
     constructor(parent, id) {
         this.parent = parent
@@ -27,14 +30,27 @@ export class PerformancePage {
         )
     }
 
+    clickBack() {
+        const mainPage = new MainPage(this.parent)
+        mainPage.render()
+    }
+
+    get pageRoot() {
+        return document.getElementById('main-page')
+    }
+
     render() {
         this.parent.innerHTML = ''
         const html = this.getHTML()
         this.parent.insertAdjacentHTML('beforeend', html)
 
+
         const data = this.getData()
         const stock = new PerformanceComponent(this.page)
         stock.render(data)
+
+        const backButton = new BackButtonComponent(this.page)
+        backButton.render(this.clickBack.bind(this))
     }
 
 }
