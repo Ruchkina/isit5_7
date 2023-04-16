@@ -1,18 +1,28 @@
 // import {ButtonComponent} from "../../components/button/ButtonComponent.js";
 
+// import {ajax} from "../../modules/ajax";
+// import {urls} from "../../modules/urls";
+
+import {ajax} from "../../modules/ajax.js";
+import {urls} from "../../modules/urls.js";
 import {PerformanceCardComponent} from "../../components/product-card/PerformanceCardComponents.js";
-import {ajax} from "../../modules/ajax";
-import {urls} from "../../modules/urls";
-import {PerformancePage} from "../../components/perfornamce/PerformancePage";
 
 export class MainPage {
     constructor(parent) {
         this.parent = parent;
     }
 
-    get page() {
-        return document.getElementById('main-page')
+    async getData() {
+        return ajax.get(urls.stocks())
     }
+
+    async clickCard(e) {
+        const cardId = e.target.dataset.id
+
+        const performancePage = new PerformancePage(this.parent, cardId)
+        await performancePage.render()
+    }
+
 
     getHTML() {
         return (
@@ -22,7 +32,11 @@ export class MainPage {
         )
     }
 
-    // getData() {
+    get page() {
+        return document.getElementById('main-page')
+    }
+
+    // async getData() {
     //     return [
     //         {
     //             id: 1,
@@ -45,6 +59,20 @@ export class MainPage {
     //     ]
     // }
 
+    async render() {
+        this.parent.innerHTML = ''
+        console.log(`2`);
+        const html = this.getHTML()
+        this.parent.insertAdjacentHTML('beforeend', html)
+        this.parent.insertAdjacentHTML('beforeend', '<button type="button" class="btn btn-primary">Hello 3!</button>')
+        console.log(`22`);
+        const data = await this.getData()
+        console.log(data);
+        data.data.forEach((item) => {
+            const stockCard = new PerformanceCardComponent(this.page)
+            stockCard.render(item, this.clickCard.bind(this))
+        })
+    }
 
 
     // render() {
@@ -61,38 +89,7 @@ export class MainPage {
     //     })
     // }
 
-    async clickCard(e) {
-        const cardId = e.target.dataset.id
 
-        const performancePage = new PerformancePage(this.parent, cardId)
-        await performancePage.render()
-    }
-    async getData() {
-        return ajax.get(urls.stocks())
-    }
 
-    async render() {
-        this.parent.innerHTML = ''
-        const html = this.getHTML()
-        this.parent.insertAdjacentHTML('beforeend', html)
-
-        const data = await this.getData()
-        data.data.forEach((item) => {
-            const stockCard = new PerformanceCardComponent(this.page)
-            //stockCard.render(item)
-            stockCard.render(item, this.clickCard.bind(this))
-        })
-    }
-        // render() {
-        //     this.parent.innerHTML = ''
-        //     const html = this.getHTML()
-        //     this.parent.insertAdjacentHTML('beforeend', html)
-        //
-        //     const data = this.getData()
-        //     data.forEach((item) => {
-        //         const stockCard = new PerformanceCardComponent(this.page)
-        //         stockCard.render(item)
-        //     })
-        // }
 
 }

@@ -14,11 +14,16 @@
 //         this.parent.insertAdjacentHTML('beforeend', '<button type="button" class="btn btn-primary">Hello world 3!</button>')
 //     }
 // }
+
+// const root = document.getElementById("root");
+//
+
 import {MainPage} from "./pages/main/MainPage.js";
 
 const root = document.getElementById('root');
 
-const mainPage = new MainPage(root);
+const mainPage = new MainPage(root)
+await mainPage.render()
 
-await mainPage.render();
+root.insertAdjacentHTML('beforeend', '<button type="button" class="btn btn-primary">Hello world 3!</button>')
 

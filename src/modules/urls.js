@@ -5,11 +5,11 @@ class Urls {
             }
 
     stocks() {
-        return `${this.url}/shop/performance/`
+        return `${this.url}shop/performance/`
     }
 
     stock(id) {
-        return `${this.url}/shop/performance/${id}/`
+        return `${this.url}shop/performance/${id}/`
     }
 }
 
