@@ -1,5 +1,6 @@
 class Ajax {
     async get(url) {
+        //const url1 = 'http://127.0.0.1:8000/shop/performance/1/'
         const response = await fetch(url, {
             method: "GET"
         });
@@ -11,5 +12,4 @@ class Ajax {
         };
     }
 }
-
 export const ajax = new Ajax();

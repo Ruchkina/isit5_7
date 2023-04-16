@@ -9,7 +9,7 @@ class Urls {
     }
 
     stock(id) {
-        return `${this.url}shop/performance/${id}/`
+        return `${this.url}/shop/performance/${id}/`
     }
 }
 

@@ -1,9 +1,9 @@
 // import {ButtonComponent} from "../../components/button/ButtonComponent.js";
 
 import {PerformanceCardComponent} from "../../components/product-card/PerformanceCardComponents.js";
-import {PerformancePage} from "../../components/perfornamce/PerformancePage.js";
 import {ajax} from "../../modules/ajax";
 import {urls} from "../../modules/urls";
+import {PerformancePage} from "../../components/perfornamce/PerformancePage";
 
 export class MainPage {
     constructor(parent) {
@@ -45,12 +45,6 @@ export class MainPage {
     //     ]
     // }
 
-    clickCard(e) {
-        const cardId = e.target.dataset.id
-
-        const stockPage = new PerformancePage(this.parent, cardId)
-        stockPage.render()
-    }
 
 
     // render() {
@@ -66,6 +60,13 @@ export class MainPage {
     //         stockCard.render(item, this.clickCard.bind(this))
     //     })
     // }
+
+    async clickCard(e) {
+        const cardId = e.target.dataset.id
+
+        const performancePage = new PerformancePage(this.parent, cardId)
+        await performancePage.render()
+    }
     async getData() {
         return ajax.get(urls.stocks())
     }
@@ -78,6 +79,7 @@ export class MainPage {
         const data = await this.getData()
         data.data.forEach((item) => {
             const stockCard = new PerformanceCardComponent(this.page)
+            //stockCard.render(item)
             stockCard.render(item, this.clickCard.bind(this))
         })
     }

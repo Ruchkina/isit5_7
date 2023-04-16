@@ -1,8 +1,8 @@
-import {MainPage} from "../../pages/main/MainPage.js";
 import {ajax} from "../../modules/ajax.js";
 import {urls} from "../../modules/urls.js";
-import {BackButtonComponent} from "../button/BackButtonComponent.js";
 import {PerformanceComponent} from "./PerformanceComponent.js";
+import {BackButtonComponent} from "../button/BackButtonComponent";
+import {MainPage} from "../../pages/main/MainPage";
 
 export class PerformancePage {
     constructor(parent, id) {
@@ -31,28 +31,12 @@ export class PerformancePage {
         )
     }
 
-    clickBack() {
+    async clickBack() {
         const mainPage = new MainPage(this.parent)
-        mainPage.render()
+        await mainPage.render()
     }
 
-    get pageRoot() {
-        return document.getElementById('main-page')
-    }
 
-    // render() {
-    //     this.parent.innerHTML = ''
-    //     const html = this.getHTML()
-    //     this.parent.insertAdjacentHTML('beforeend', html)
-    //
-    //
-    //     const data = this.getData()
-    //     const stock = new PerformanceComponent(this.page)
-    //     stock.render(data)
-    //
-    //     const backButton = new BackButtonComponent(this.page)
-    //     backButton.render(this.clickBack.bind(this))
-    // }
 
     async getData() {
         return ajax.get(urls.stock(this.id))
@@ -72,3 +56,22 @@ export class PerformancePage {
     }
 
 }
+
+
+// get pageRoot() {
+//     return document.getElementById('main-page')
+// }
+
+// render() {
+//     this.parent.innerHTML = ''
+//     const html = this.getHTML()
+//     this.parent.insertAdjacentHTML('beforeend', html)
+//
+//
+//     const data = this.getData()
+//     const stock = new PerformanceComponent(this.page)
+//     stock.render(data)
+//
+//     const backButton = new BackButtonComponent(this.page)
+//     backButton.render(this.clickBack.bind(this))
+// }
