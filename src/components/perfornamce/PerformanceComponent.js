@@ -3,6 +3,8 @@ export class PerformanceComponent {
         this.parent = parent
     }
     getHTML(data) {
+        console.log("www")
+        console.log(data)
         return (
             `
                 <div class="card mb-3" style="width: 540px;">
@@ -13,7 +15,7 @@ export class PerformanceComponent {
                         <div class="col-md-8">
                             <div class="card-body">
                                 <h5 class="card-title">${data.name}</h5>
-                                <p class="card-text">${data.text}</p>
+                                <p class="card-text"> Стоимость: ${data.price}</p>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ export class PerformanceCardComponent {
                 <div class="card-body">
                     <h5 class="card-title">${data.name}</h5>
 
-                    <button class="btn btn-primary" id="click-card-${data.id}" data-id="${data.id}">Нажми на меня</button>
+                    <button class="btn btn-primary" id="click-card-${data.pk}" data-id="${data.pk}">Нажми на меня</button>
                 </div>
             </div>
             `
@@ -20,7 +20,7 @@ export class PerformanceCardComponent {
 
     addListeners(data, listener) {
         document
-            .getElementById(`click-card-${data.id}`)
+            .getElementById(`click-card-${data.pk}`)
             .addEventListener("click", listener)
     }
 
