@@ -6,9 +6,9 @@ export class PerformanceCardComponent {
         return (
             `
             <div class="card" style="width: 300px;">
-                <img class="card-img-top" src="${data.src}" alt="картинка">
+                <img class="card-img-top" src="${data.image}" alt="картинка">
                 <div class="card-body">
-                    <h5 class="card-title">${data.title}</h5>
+                    <h5 class="card-title">${data.name}</h5>
                     <p class="card-text">${data.text}</p>
 <!--                    <button class="btn btn-primary"">Нажми на меня</button>-->
                     <button class="btn btn-primary" id="click-card-${data.id}" data-id="${data.id}">Нажми на меня</button>
